@@ -7,9 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
+            @livewire('show-posts', [ 'title' => 'Este es un titulo de prueba' ] ) <!--Para llamar un componente de livewire (VLW. 2)-->
+            {{--@livewire('nav.show-posts')<!--Para llamar un componente de livewire desde una carpeta (VLW. 2)-->--}}
         </div>
     </div>
 </x-app-layout>
