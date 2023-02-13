@@ -8,6 +8,7 @@ class ShowPosts extends Component
 {
 
     public $titulo;
+    public $search = "Aqui se buscará";
 
    /* public function mount($title){
         $this -> titulo = $title; //Se recibe el titulo que se le manda desde dashboard y 
@@ -16,7 +17,7 @@ class ShowPosts extends Component
     }*/
     public function render()
     {
-        $post = Post::all();    
+        $post = Post::where('title', 'like', '%'. $this->search . '%')->get();    
         return view('livewire.show-posts', compact('post'));
     }
 }
