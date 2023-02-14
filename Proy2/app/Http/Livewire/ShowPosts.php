@@ -18,8 +18,8 @@ class ShowPosts extends Component
 
     public function render()
     {
-        //$post = Post::where('title', 'like', '%'. $this->search . '%')->get();    
-        $post = Post::all();
+        $post = Post::where('title', 'like', '%'.  $this->search . '%')->get();    
+        //$post = Post::all();
         return view('livewire.show-posts', compact('post'));
     }
 }

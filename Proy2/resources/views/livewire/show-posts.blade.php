@@ -1,6 +1,6 @@
 <div>
+    <livewire:show-posts>
     
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -9,18 +9,12 @@
 
     <h1>{{$search}}</h1>
 
-    <div>
-        {{$prueba = "Prueba"}}
-        <br>
-        <input type="text" wire:model='${search}'>
-    </div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!---Table---->
        <x-table>
             <div class="px-6 py-4">
               {{--  <input type="text" wire:model="search">--}}
-                <x-input type="text" wire:model="search" />
+                <x-input type="text" wire:model="value" value="{{$search}}"/>
             </div>
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
