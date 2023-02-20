@@ -7,8 +7,10 @@ use App\Models\Post;
 class ShowPosts extends Component
 {
 
-    public $titulo;
-    public $search = "Aqui se buscará";
+    public $sort = 'id';
+
+    public $direction = 'asc';
+    public $search;
 
    /* public function mount($title){
         $this -> titulo = $title; //Se recibe el titulo que se le manda desde dashboard y 
@@ -17,7 +19,21 @@ class ShowPosts extends Component
     }*/
     public function render()
     {
-        $post = Post::where('title', 'like', '%'. $this->search . '%')->get();    
+        $post = Post::where('title', 'like', '%'. $this->search . '%')->orWhere('content', 'like', '%'. $this->search. '%')->orderBy( $this->sort, $this->direction) ->get();    
         return view('livewire.show-posts', compact('post'));
+    }
+
+    public function ordenar( $sort ){
+        if ( $this->sort == $sort ) {
+            if ( $this->direction == 'asc' ){ $this->direction = 'desc'; }
+            else{ $this->direction = 'asc'; }
+
+        } else {
+            $this->sort = $sort;
+            $this->direction = 'asc';
+        }
+        
+
+        $this->sort = $sort;
     }
 }
