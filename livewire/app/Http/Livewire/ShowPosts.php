@@ -12,6 +12,9 @@ class ShowPosts extends Component
     public $direction = 'asc';
     public $search;
 
+    protected $listeners = ['render' => 'render' ];  //Aqui estamos escuchando el evento que se 
+                                                    //manda desde createpost, parad despues inicializarlo. (VLW. 8)
+
    /* public function mount($title){
         $this -> titulo = $title; //Se recibe el titulo que se le manda desde dashboard y 
                                   //se asigna a la variable titulo (VLW. 2)

@@ -12,6 +12,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/all.min.css') }}">
@@ -41,5 +43,16 @@
         @stack('modals')
 
         @livewireScripts
+
+        {{--En esta parte se escuchara el evento que se le mando desde createpost con el nombre 'alert' --}}
+        <script> 
+            Livewire.on( 'alert', function(message) { 
+                Swal.fire(
+                    'Good job!',
+                    message,
+                    'success'
+                )      
+            })
+        </script>
     </body>
 </html>
