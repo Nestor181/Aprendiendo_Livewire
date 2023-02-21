@@ -70,6 +70,12 @@
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                             </th>
+
+                            <th scope="col"
+                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="ordenar('content')">
+                                Imagen
+                            </th>
+
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
@@ -90,6 +96,15 @@
                                 <td class="px-6 py-4  text-sm text-gray-500">
                                     <div class="text-sm text-gray-900">{{$post->content}}</div>
                                 </td>
+                                <td class="px-6 py-4  text-sm text-gray-500">
+                                    @if ( $post->image )
+                                        <img class="mb-4" src="{{ $post->image }}" >
+                                    @else
+                                        <div class="text-sm text-gray-900">Este post no cuenta con imagen disponible</div>
+                                    @endif
+                                </td>
+                               
+
                                 <td class="px-6 py-4  text-right text-sm font-medium">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 </td>

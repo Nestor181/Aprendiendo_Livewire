@@ -15,8 +15,7 @@
               </div>
 
             @if ($image)
-                <img class="mb-4" src="{{ $image->temporaryUrl() }}" > {{--Esto es para recuperar la url temporal que se almacena en la varibale $image(VLW.12)--}}
-                
+                <img class="mb-4" src="{{ $image->temporaryUrl() }}" > {{--Esto es para recuperar la url temporal que se almacena en la varibale $image(VLW.12)--}}  
             @endif
 
             <div class="mb-4">
