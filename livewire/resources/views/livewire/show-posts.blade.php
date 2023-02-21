@@ -90,20 +90,23 @@
                                     <div class="text-sm text-gray-900">{{$post->id}}</div>
                                     
                                 </td>
+                                
                                 <td class="px-6 py-4 ">
                                     <div class="text-sm text-gray-900">{{$post->title}}</div>
                                 </td>
+
                                 <td class="px-6 py-4  text-sm text-gray-500">
                                     <div class="text-sm text-gray-900">{{$post->content}}</div>
                                 </td>
+
                                 <td class="px-6 py-4  text-sm text-gray-500">
                                     @if ( $post->image )
                                         <img class="mb-4" src="{{ $post->image }}" >
+                                        <div class="text-sm text-gray-900">{{$post->image}}</div>
                                     @else
                                         <div class="text-sm text-gray-900">Este post no cuenta con imagen disponible</div>
                                     @endif
                                 </td>
-                               
 
                                 <td class="px-6 py-4  text-right text-sm font-medium">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
