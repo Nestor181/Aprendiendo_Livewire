@@ -14,14 +14,14 @@ class CreatePost extends Component
 
     //Creamos reglas de validacion para crear un nuevo post y que los datos de titulo y contenido sean requeridos(VLW. 9)
     protected $rules = [
-        'title'   => 'required|max:10',
-        'content' => 'required|min:100'
+        'title'   => 'required',
+        'content' => 'required'
     ];
 
     //Cada vez que se actualice el contenido de la propiedad, verifica si se cumple con las reglas impuestas (VLW. 9)
-    public function updated( $nombrePropiedad ){
-        $this->validateOnly( $nombrePropiedad );
-    }
+    // public function updated( $nombrePropiedad ){
+    //     $this->validateOnly( $nombrePropiedad );
+    // }
 
     public function crear(){
 
