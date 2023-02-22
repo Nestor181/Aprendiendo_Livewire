@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use Livewire\WithFileUploads; //Ayuda a subir las imagenes al servidor
 
 class CreatePost extends Component
 {
