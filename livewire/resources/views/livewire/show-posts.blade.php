@@ -101,8 +101,7 @@
 
                                 <td class="px-6 py-4  text-sm text-gray-500">
                                     @if ( $post->image )
-                                        <img class="mb-4" src="{{ $post->image }}" >
-                                        <div class="text-sm text-gray-900">{{$post->image}}</div>
+                                        <img class="mb-4" src="{{ Storage::url( $post->image ) }}" >
                                     @else
                                         <div class="text-sm text-gray-900">Este post no cuenta con imagen disponible</div>
                                     @endif
