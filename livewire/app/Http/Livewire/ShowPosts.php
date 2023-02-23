@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Foundation\Testing\WithoutEvents;
-use Livewire\WithPagination;
+use Livewire\WithPagination;//Esto es para  poder usar el método updating(). (VLW.16)
 
 class ShowPosts extends Component
 {
@@ -25,7 +25,7 @@ class ShowPosts extends Component
 
     }*/
 
-    public function updatingDirection(){
+    public function updatingSearch(){//Cada vez que se cambia la información contenida en search, hace que se resetee la página(VLW.16)
         $this->resetPage();
     }
 
