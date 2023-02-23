@@ -4,8 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
+use Illuminate\Foundation\Testing\WithoutEvents;
+use Livewire\WithPagination;
+
 class ShowPosts extends Component
 {
+    use WithPagination;
 
     public $sort = 'id';
 
@@ -20,10 +24,18 @@ class ShowPosts extends Component
                                   //se asigna a la variable titulo (VLW. 2)
 
     }*/
+
+    public function updatingDirection(){
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $post = Post::where('title', 'like', '%'. $this->search . '%')->orWhere('content', 'like', '%'. $this->search. '%')->orderBy( $this->sort, $this->direction) ->get();    
-        return view('livewire.show-posts', compact('post'));
+        $posts = Post::where('title', 'like', '%' . $this->search . '%')
+        ->orWhere('content', 'like', '%' . $this->search. '%')
+        ->orderBy( $this->sort, $this->direction)
+        ->paginate(5);    
+        return view('livewire.show-posts', compact('posts'));
     }
 
     public function ordenar( $sort ){

@@ -14,7 +14,7 @@
 
             @livewire('create-post')
         </div>
-            @if ($post->count()) {{--Este if nos dice si existe al menos un post de busqueda --}}
+            @if ($posts->count()) {{--Este if nos dice si existe al menos un post de busqueda --}}
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -83,7 +83,7 @@
                     </thead>
 
                     <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($post as $post)
+                    @foreach ($posts as $post)
                             <tr>
                                 
                                 <td class="px-6 py-4 ">
@@ -118,6 +118,13 @@
                 <div>No existe algun registro coincidente</div>
                 
             @endif
+
+            @if ( $posts->hasPages() ) {{--Este metodo es para saber si hay dos o más páginas mostrara el div, sino se mostrará oculto (VLW.15) --}}
+                <div class="px-6 py-3">
+                    {{ $posts->links() }}
+                </div>   
+            @endif
+
        </x-table>
                    
 

@@ -48,7 +48,7 @@
         <script> 
             Livewire.on( 'alert', function(message) { 
                 Swal.fire(
-                    'Good job!',
+                    'Ya creaste tu post. Sí le sabes!!!!',
                     message,
                     'success'
                 )      
