@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Mail\Mailables\Content;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,8 @@ class EditPost extends Component
 
         if($this->image){
             Storage::delete( [$this->post->image] );
-            $this->post->image = $this->image->store('public/storage/posts');
+            // $this->post->image = Storage::url( $this->image );
+            $this->post->image = $this->image->store( 'public/storage/posts' );
         }
 
         $this->post->save();

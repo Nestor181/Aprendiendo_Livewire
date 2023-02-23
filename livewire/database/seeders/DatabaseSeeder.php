@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Storage::delete('public/storage/posts');
-        Storage::makeDirectory('public/storage/posts'); //Para crear una carpeta en public/storage
+        Storage::delete('posts');
+        Storage::makeDirectory('posts'); //Para crear una carpeta en public/storage
         \App\Models\Post::factory(100)->create();
     }
 }
