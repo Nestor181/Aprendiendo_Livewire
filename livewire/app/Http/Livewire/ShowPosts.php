@@ -14,7 +14,16 @@ class ShowPosts extends Component
     public $sort = 'id';
 
     public $direction = 'asc';
-    public $search;
+    public $search = '';
+    public $cant = '10';
+
+    //Para poder mandar la informacion de estas variables por la url de la página y verla de la misma forma por si compartimos la url con alguien(VLW.17)
+    protected $queryString = [
+        'cant' => [ 'except' => '10' ], 
+        'sort' => [ 'except' => 'id' ],
+        'direction' => [ 'except' => 'asc' ], 
+        'search' => [ 'except' => '' ]
+    ];
 
     protected $listeners = ['render' => 'render' ];  //Aqui estamos escuchando el evento que se 
                                                     //manda desde createpost, parad despues inicializarlo. (VLW. 8)
@@ -34,7 +43,7 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', '%' . $this->search . '%')
         ->orWhere('content', 'like', '%' . $this->search. '%')
         ->orderBy( $this->sort, $this->direction)
-        ->paginate(5);    
+        ->paginate( $this->cant );    
         return view('livewire.show-posts', compact('posts'));
     }
 
