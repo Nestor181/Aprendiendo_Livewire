@@ -1,4 +1,4 @@
-<div>
+<div wire:init="cargarPost"> {{--Este wire sirve para vincular con el metodo cargarPost y aumentar el tiempo de carga (VLW:18)--}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -28,7 +28,7 @@
 
             @livewire('create-post')
         </div>
-            @if ($posts->count()) {{--Este if nos dice si existe al menos un post de busqueda --}}
+            @if ( count($posts) ) {{--Este if nos dice si existe al menos un post de busqueda --}}
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -128,16 +128,19 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                @if ( $posts->hasPages() ) {{--Este metodo es para saber si hay dos o más páginas mostrara el div, sino se mostrará oculto (VLW.15) --}}
+                    <div class="px-6 py-3">
+                        {{ $posts->links() }}
+                    </div>   
+                @endif
+
             @else
                 <div>No existe algun registro coincidente</div>
                 
             @endif
 
-            @if ( $posts->hasPages() ) {{--Este metodo es para saber si hay dos o más páginas mostrara el div, sino se mostrará oculto (VLW.15) --}}
-                <div class="px-6 py-3">
-                    {{ $posts->links() }}
-                </div>   
-            @endif
+            
 
        </x-table>
                    

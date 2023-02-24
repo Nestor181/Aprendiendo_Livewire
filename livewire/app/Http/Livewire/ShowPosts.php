@@ -16,6 +16,7 @@ class ShowPosts extends Component
     public $direction = 'asc';
     public $search = '';
     public $cant = '10';
+    public $readyToLoad = false;
 
     //Para poder mandar la informacion de estas variables por la url de la página y verla de la misma forma por si compartimos la url con alguien(VLW.17)
     protected $queryString = [
@@ -40,11 +41,20 @@ class ShowPosts extends Component
 
     public function render()
     {
+        if( $this->readyToLoad ){
         $posts = Post::where('title', 'like', '%' . $this->search . '%')
         ->orWhere('content', 'like', '%' . $this->search. '%')
         ->orderBy( $this->sort, $this->direction)
-        ->paginate( $this->cant );    
+        ->paginate( $this->cant ); 
+        }else{ $posts = []; }
+        
         return view('livewire.show-posts', compact('posts'));
+    }
+
+    //Esta funcion sirve para aplazar la carga al momento de renderizar la pagina (VLW. 18)
+    public function cargarPost(){
+        $this->readyToLoad = true;;
+
     }
 
     public function ordenar( $sort ){
