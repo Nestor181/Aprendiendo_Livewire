@@ -121,8 +121,12 @@
                                     @endif
                                 </td>
 
-                                <td class="px-6 py-4 text-sm font-medium">
+                                <td class="px-6 py-4 text-sm font-medium flex">
                                    @livewire('edit-post', ['post' => $post], key($post->id)) {{--Componenetes de anidamiento(VLW.13)--}}
+
+                                   <a class="btn btn-red ml-2" wire:click="$emit( 'deletePost', )">
+                                        <i class="fas fa-trash"></i>
+                                   </a>
                                 </td>
                             </tr
                         @endforeach
@@ -142,15 +146,33 @@
 
             
 
-       </x-table>
-                   
-
+       </x-table>                  
 
     </div>
 
-    {{-- {{$titulo}} --}}
     @push('js')
-        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>  
+        <script src="sweetalert2.all.min.js"></script>
+
+        <script>
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                            )
+                        }
+                    })
+        </script>
+        
     @endpush
 
 </div>

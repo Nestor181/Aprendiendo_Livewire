@@ -47,7 +47,6 @@
         @livewireScripts
 
         @stack('js')
-        @stack( 'scripts' )
 
         {{--En esta parte se escuchara el evento que se le mando desde createpost con el nombre 'alert' --}}
         <script> 
