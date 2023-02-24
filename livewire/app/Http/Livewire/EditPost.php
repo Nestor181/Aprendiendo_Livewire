@@ -13,7 +13,7 @@ class EditPost extends Component
 {
     USE WithFileUploads;
 
-    public $open = false;
+    public $open;
 
     public $post,$image, $identificador;
 
@@ -25,6 +25,12 @@ class EditPost extends Component
     public function mount( Post $post){
         $this->post = $post;
         $this->identificador = rand();
+
+    }
+
+    public function cancelar(){
+        $this->open = false;
+
     }
 
     public function guardar(){

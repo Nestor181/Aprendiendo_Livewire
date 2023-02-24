@@ -50,8 +50,16 @@ class CreatePost extends Component
 
         $this->emit( 'alert', 'El post se creo satisfactoriamente' );
     }
+
+    public function resetear(){
+        $this->open = false;
+        $this->content = '';
+    }
+
     public function render()
     {
         return view('livewire.create-post');
     }
+
+
 }

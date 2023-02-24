@@ -27,6 +27,8 @@
                 <x-jet-input wire:model="post.title" type="text" class="w-full"/>
             </div>
 
+            {{ $post->content }}
+
             <div>
                 <x-jet-label value="Contenido del post"/>
                 <textarea wire:model="post.content" rows="6" class="form-control w-full"></textarea>
@@ -40,10 +42,10 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('open', false)">Cancelar</x-jet-secondary-button>
+            <x-jet-secondary-button wire:click="$set( 'open', false )">Cancelar</x-jet-secondary-button>
             <x-jet-danger-button wire:click="guardar" wire:loading.attr="disabled" class="disabled:opacity-25">Actualizar</x-jet-danger-button>
         </x-slot>
 
-
     </x-jet-dialog-modal>
+
 </div>

@@ -20,7 +20,7 @@
                     <option value="100">100</option>
                 </select>
 
-                <span>Entradas</span>
+                <span>Entradas </span>
             </div>
 
             {{-- <input type="text" wire:model="search"> --}}
@@ -149,4 +149,8 @@
     </div>
 
     {{-- {{$titulo}} --}}
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>  
+    @endpush
+
 </div>

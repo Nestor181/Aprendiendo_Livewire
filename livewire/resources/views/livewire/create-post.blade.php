@@ -26,13 +26,17 @@
 
             </div>
 
-            <div class="mb-4">
+            {{ $content }}
+        
+            <div class="mb-4" {{ ($open=true) ? 'wire:ignore ' : '' }} >{{--Cada vez que se renderiza la paina, se renderice todo menos este div (VLW.19)--}}
                 <x-jet-label value="Contenido del post"/>
-                <textarea rows="6" class="form-control w-full" wire:model.ofer="content"></textarea>
+                <textarea id="editor" rows="6" 
+                class="form-control w-full" wire:model="content">
+            </textarea>
 
                 <x-jet-input-error for='content'/>  {{--Con este componente hacemos que se muestre un mensaje de error al no ser llenado el campo (VLW. 9)--}}
 
-            </div>
+            </div>   
 
             <div>
                 <input type="file" wire:model="image" id="{{$identificador}}">{{--Para poder recibir imagenes en el post(VLW.12) --}}
@@ -42,7 +46,7 @@
         </x-slot>
         <x-slot name='footer'>
 
-            <x-jet-secondary-button wire:click="$set('open', false)">
+            <x-jet-secondary-button wire:click="$set('open', false)" {{--wire:click="resetear" --}}>
                 Cancelar
             </x-jet-secondary-button>
 
@@ -56,4 +60,23 @@
 
 
     </x-jet-dialog-modal>
+
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>  
+
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                //Utilizamos un metodo mágico para que cada vez que se cambie el valor en el contenedor del editor, se actualice en content(VLW.19)
+                .then( function( editor ){
+                    editor.model.document.on( 'change:data', () => {
+                        @this.set( 'content', editor.getData() );
+                    })
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+        
+    @endpush
 </div>

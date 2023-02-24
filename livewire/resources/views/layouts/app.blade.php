@@ -18,6 +18,8 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/all.min.css') }}">
         @livewireStyles
+
+        @stack('css')
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,6 +45,9 @@
         @stack('modals')
 
         @livewireScripts
+
+        @stack('js')
+        @stack( 'scripts' )
 
         {{--En esta parte se escuchara el evento que se le mando desde createpost con el nombre 'alert' --}}
         <script> 
