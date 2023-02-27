@@ -124,7 +124,7 @@
                                 <td class="px-6 py-4 text-sm font-medium flex">
                                    @livewire('edit-post', ['post' => $post], key($post->id)) {{--Componenetes de anidamiento(VLW.13)--}}
 
-                                   <a class="btn btn-red ml-2" wire:click="$emit( 'deletePost', )">
+                                   <a class="btn btn-red ml-2" wire:click="$emit( 'deletePost', {{ $post -> id }})">
                                         <i class="fas fa-trash"></i>
                                    </a>
                                 </td>
@@ -154,7 +154,9 @@
         <script src="sweetalert2.all.min.js"></script>
 
         <script>
-            Swal.fire({
+            
+            Livewire.on( 'deletePost', postId => {
+                Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
@@ -164,6 +166,8 @@
                 confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                         if (result.isConfirmed) {
+
+                            Livewire.emitTo( 'show-posts', 'delete', postId );
                             Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -171,6 +175,7 @@
                             )
                         }
                     })
+            });
         </script>
         
     @endpush

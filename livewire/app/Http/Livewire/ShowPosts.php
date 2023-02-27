@@ -17,7 +17,7 @@ class ShowPosts extends Component
     public $search = '';
     public $cant = '10';
     public $readyToLoad = false;
-
+   
     //Para poder mandar la informacion de estas variables por la url de la página y verla de la misma forma por si compartimos la url con alguien(VLW.17)
     protected $queryString = [
         'cant' => [ 'except' => '10' ], 
@@ -26,7 +26,7 @@ class ShowPosts extends Component
         'search' => [ 'except' => '' ]
     ];
 
-    protected $listeners = ['render' => 'render' ];  //Aqui estamos escuchando el evento que se 
+    protected $listeners = ['render' => 'render', 'delete' ];  //Aqui estamos escuchando el evento que se 
                                                     //manda desde createpost, parad despues inicializarlo. (VLW. 8)
 
    /* public function mount($title){
@@ -69,5 +69,10 @@ class ShowPosts extends Component
         
 
         $this->sort = $sort;
+    }
+
+    public function delete( Post $post ){
+        $post->delete();
+
     }
 }
